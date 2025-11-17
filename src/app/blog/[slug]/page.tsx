@@ -2,7 +2,7 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import Link from 'next/link'
 
-// Mock posts - em produção, isso viraria de um CMS ou arquivos MDX
+// Mock posts
 const posts: Record<string, any> = {
   'hello-world': {
     title: 'Bem-vindo ao Blog SaaS',
@@ -131,6 +131,9 @@ export default async function PostPage({ params }: PageProps) {
               }
               if (line.startsWith('- ')) {
                 return <li key={idx} className="ml-6 mb-2 text-gray-700">{line.slice(2)}</li>
+              }
+              if (line.startsWith('1. ')) {
+                return <li key={idx} className="ml-6 mb-2 text-gray-700 list-decimal">{line.slice(3)}</li>
               }
               if (line.trim() === '') {
                 return <div key={idx} className="h-2" />
